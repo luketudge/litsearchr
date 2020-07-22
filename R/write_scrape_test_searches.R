@@ -149,13 +149,13 @@ should_stem <- function(word){
         if(exactphrase==FALSE){
           for(k in 1:length(group_terms)){
             if(length(strsplit(group_terms[k], " ")[[1]])>1){
-              group_terms[k] <- paste("\\(", group_terms[k], "\\)", sep="")
+              group_terms[k] <- paste("(", group_terms[k], ")", sep="")
             }
           }
         }
 
-        group_terms[1] <- paste("\\(", group_terms[1], sep="")
-        group_terms[length(group_terms)] <- paste(group_terms[length(group_terms)], "\\)", sep="")
+        group_terms[1] <- paste("(", group_terms[1], sep="")
+        group_terms[length(group_terms)] <- paste(group_terms[length(group_terms)], ")", sep="")
         full_group <- paste(group_terms, collapse=" OR ")
 
         group_list[j] <- full_group
@@ -163,7 +163,7 @@ should_stem <- function(word){
         if(j==length(groupdata)){
 
           this_search <- paste(group_list, collapse=" AND ")
-          this_search <- paste("\\(", this_search, "\\)", sep="")
+          this_search <- paste("(", this_search, ")", sep="")
 
           if(writesearch==TRUE){
             filename <- paste(directory, "search-in", languages[i], ".txt", sep="")
@@ -184,7 +184,7 @@ should_stem <- function(word){
     }
 
     search_list <- gsub("&#39;", "'", search_list)
-    search_list <- gsub("\\\\", "", search_list)
+    #search_list <- gsub("\\\\", "", search_list)
       return(search_list)
 
     }
